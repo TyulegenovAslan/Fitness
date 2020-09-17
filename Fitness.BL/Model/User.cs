@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fitness.BL.Model
 {
     /// <summary>
     /// Пользователь
     /// </summary>
+    [Serializable]
     public class User
     {
         /// <summary>
@@ -38,10 +37,10 @@ namespace Fitness.BL.Model
         /// <param name="birthDate">Дата раждения</param>
         /// <param name="weight">Вес</param>
         /// <param name="height">Рост</param>
-        public User(string name, 
-                    Gender gender, 
-                    DateTime birthDate, 
-                    double weight, 
+        public User(string name,
+                    Gender gender,
+                    DateTime birthDate,
+                    double weight,
                     double height)
         {
 
@@ -51,7 +50,7 @@ namespace Fitness.BL.Model
                 throw new ArgumentNullException(nameof(name));
             }
 
-            if(gender == null)
+            if (gender == null)
             {
                 throw new ArgumentNullException(nameof(gender));
             }
@@ -61,12 +60,12 @@ namespace Fitness.BL.Model
                 throw new ArgumentException(nameof(birthDate));
             }
 
-            if(weight <= 0)
+            if (weight <= 0)
             {
-                throw new ArgumentException("Вес не может быть равень <= 0",nameof(weight));
+                throw new ArgumentException("Вес не может быть равень <= 0", nameof(weight));
             }
 
-            if(height <= 0)
+            if (height <= 0)
             {
                 throw new ArgumentException("Рост не может быть равень <= 0", nameof(height));
             }

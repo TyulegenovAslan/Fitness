@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fitness.BL.Model
 {
     /// <summary>
     /// Пол
     /// </summary>
+    [Serializable]
     public class Gender
     {
         /// <summary>
