@@ -2,7 +2,9 @@
 using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,8 +14,11 @@ namespace Fitness.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness");
-            Console.WriteLine("Введите имя пользлвателя");
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
+
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+            Console.WriteLine(resourceManager.GetString("EnterName", culture));
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
@@ -37,17 +42,17 @@ namespace Fitness.CMD
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            if(key.Key == ConsoleKey.E)
+            if (key.Key == ConsoleKey.E)
             {
                 var food = EnterEating();
                 eatingController.Add(food.Food, food.Weight);
 
-                foreach(var item in eatingController.Eating.Foods)
+                foreach (var item in eatingController.Eating.Foods)
                 {
                     Console.WriteLine($"\t{item.Key} - {item.Value}");
                 }
             }
-            
+
 
             Console.ReadLine();
 
@@ -65,7 +70,7 @@ namespace Fitness.CMD
             var weight = ParseDouble("вес порции");
             var product = new Food(food);
 
-            return (Food: product,  Weight: weight);
+            return (Food: product, Weight: weight);
         }
 
         private static DateTime ParseDateTime()
